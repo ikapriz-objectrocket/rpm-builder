@@ -11,4 +11,7 @@ RUN cd /usr/src && tar xzf Python-2.7.15.tgz
 RUN cd /usr/src && rm -f Python-2.7.15.tgz
 RUN cd /usr/src/Python-2.7.15 && ./configure --enable-optimizations
 RUN cd /usr/src/Python-2.7.15 && make install
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN python ./get-pip.py
+RUN rm -f get-pip.py
 RUN pip install virtualenv
