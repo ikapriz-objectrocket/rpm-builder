@@ -3,7 +3,7 @@ FROM centos:7
 
 RUN yum install make -y
 RUN yum install rpm-build -y
-RUN yum install gcc openssl-devel bzip2-devel -y
+RUN yum install gcc openssl-devel bzip2-devel python-devel -y
 RUN yum install wget -y
 RUN cd /usr/src
 RUN cd /usr/src && wget https://www.python.org/ftp/python/2.7.15/Python-2.7.15.tgz
