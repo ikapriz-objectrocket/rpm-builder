@@ -9,5 +9,5 @@ RUN cd /usr/src
 RUN cd /usr/src && wget https://www.python.org/ftp/python/2.7.15/Python-2.7.15.tgz
 RUN cd /usr/src && tar xzf Python-2.7.15.tgz
 RUN cd /usr/src && rm -f Python-2.7.15.tgz
-RUN cd /usr/srcPython-2.7.15 && ./configure --enable-optimizations
-RUN cd /usr/srcPython-2.7.15 && make install
+RUN cd /usr/src/Python-2.7.15 && ./configure --enable-optimizations
+RUN cd /usr/src/Python-2.7.15 && make install
