@@ -12,8 +12,11 @@ jobs:
 
       # tag image
       - run: |
-          tag=$(git log -1 --pretty=%H)
-          docker tag ikaprizobjectrocket/rpm-builder:$CIRCLE_BRANCH ikaprizobjectrocket/rpm-builder:${tag}
+        tag=$(git log -1 --pretty=%H)
+        docker tag ikaprizobjectrocket/rpm-builder:$CIRCLE_BRANCH ikaprizobjectrocket/rpm-builder:${tag}
  
       # deploy the image
-      - run: docker push ikaprizobjectrocket/rpm-builder:$CIRCLE_BRANCH
+      - run: |
+        tag=$(git log -1 --pretty=%H)
+        docker push ikaprizobjectrocket/rpm-builder:$CIRCLE_BRANCH
+        docker push ikaprizobjectrocket/rpm-builder:$CIRCLE_BRANCH
