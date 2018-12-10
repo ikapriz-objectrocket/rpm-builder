@@ -1,14 +1,19 @@
 version: 2
 jobs:
- build:
-   machine: true
-   steps:
-     - checkout
-     # start proprietary DB using private Docker image
-     - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+  build:
+    machine: true
+    steps:
+      - checkout
+      # start proprietary DB using private Docker image
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+ 
+      # build the application image
+      - run: docker build -t ikaprizobjectrocket/rpm-builder:$CIRCLE_BRANCH .
 
-     # build the application image
-     - run: docker build -t ikaprizobjectrocket/rpm-builder:$CIRCLE_BRANCH .
-
-     # deploy the image
-     - run: docker push ikaprizobjectrocket/rpm-builder:$CIRCLE_BRANCH
+      # tag image
+      - run: |
+          tag=$(git log -1 --pretty=%H)
+          docker tag ikaprizobjectrocket/rpm-builder:$CIRCLE_BRANCH ikaprizobjectrocket/rpm-builder:${tag}
+ 
+      # deploy the image
+      - run: docker push ikaprizobjectrocket/rpm-builder:$CIRCLE_BRANCH
